@@ -1,6 +1,8 @@
 ### schema 是如何被渲染成表单的？
-#### SchemaField组件
-SchemaField组件的作用是，识别Markup Schema和 JSON Schema
+
+#### SchemaField 组件
+
+SchemaField 组件的作用是，识别 Markup Schema 和 JSON Schema
 
 ```JSX
 export function createSchemaField<Components extends SchemaReactComponents>(
@@ -63,8 +65,11 @@ export function createSchemaField<Components extends SchemaReactComponents>(
   }
 
 ```
+
 #### makeup schema 的实现
-SchemaField 中定义了 SchemaFiled.String、SchemaField.Number 等组件，它们的实现方式是通过MarkupField实现的
+
+SchemaField 中定义了 SchemaFiled.String、SchemaField.Number 等组件，它们的实现方式是通过 MarkupField 实现的
+
 ```typescript
 // 解析 markup schema
 const MarkupField = function(props:{
@@ -80,9 +85,9 @@ type: SchemaType;
   const { type, parent, name, ...resProps } = props
 
   if(type === 'object'){
-    
 
-  }if(tyoe === 'array'){
+
+  }if(type === 'array'){
 
   }else {
     // 如果是 string、number 这种叶子结点， 就直接渲染 RecursionField
@@ -91,4 +96,7 @@ type: SchemaType;
   return <SchemaMarkupContext.Provider><SchemaMarkupContext.Provider/>
 }
 ```
+
 总结一下思想
+
+### !!! RecursionField 如何去渲染 array 数据并且塑造 key 值的
