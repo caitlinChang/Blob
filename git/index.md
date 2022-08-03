@@ -17,3 +17,9 @@ git config --global --unset user.email
 
 2. `git subtree` 相当于 clone 了子项目，可以跟着主项目的迭代进度进行 commit、push，`git submodule` 相当于子项目的引用，任何子项目的改动需要同步
 3.
+
+#### git subtree 常用命令
+
+```
+git subtree pull --prefix=<本地项目名> <项目git地址> <分支> <ref>
+```
