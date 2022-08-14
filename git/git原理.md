@@ -93,3 +93,36 @@ git remote add origin url
 ##### 数据恢复
 在你工作时，Git 会默默记录每次你改变HEAD时它的值；每一次 git commit 或者git checkout 或者 git reset，都会被记录在引用日志中;
 
+```
+git reflog
+```
+
+```
+git fsck --full // 查看所有没有被其他对象指向的对象
+```
+
+##### 移除对象
+什么时候会需要移除对象呢？
+因为 Git Clone 会将Git 仓库的中的每个文件每一个历史版本都克隆下来；所以在这些历史记录当中，存在很大的文件，那么即使后面的版本中把这个文件删了，clone 的时候也还是会下载这个文件的；
+
+> 移除对象操作对git 历史的修改是破坏性的，**它会从你修改或者移除一个大文件引用的最早的树对象开始重写每一次提交**。
+
+也就是说，如果有人在你做这个操作之前有了git history，它们就需要将你的改动变基到它们的新提交上；
+
+```
+git rm biz_size_file
+```
+先找出数据对象的名字
+```
+git rev-list --objects --all | grep big_size_file
+```
+查看哪些提交对这个文件产生改动
+```
+git log --oneline --branches -- 文件名
+```
+然后使用filter-branch 命令重写改动这个文件所有 git history
+```
+
+```
+
+#### 环境变量
